@@ -1,0 +1,29 @@
+name: homely
+description: A new Flutter project.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.6 <4.0.0'
+
+dependencies:
+  cached_network_image: ^3.2.3
+  cupertino_icons: ^1.0.2
+  equatable: ^2.0.5
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.3
+  google_fonts: ^5.1.0
+  super_extensions: ^0.0.3
+
+dev_dependencies:
+  build_runner: ^2.4.6
+  flutter_gen_runner: ^5.3.1
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
