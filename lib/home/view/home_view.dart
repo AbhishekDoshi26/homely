@@ -125,10 +125,17 @@ class _HomeData extends StatelessWidget {
               borderRadius: BorderRadius.circular(20.0),
               child: Stack(
                 children: [
-                  CachedNetworkImage(
-                    imageUrl: house.image,
-                    fit: BoxFit.cover,
-                    height: context.screenHeight,
+                  Hero(
+                    tag: house.id,
+                    transitionOnUserGestures: true,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20.0),
+                      child: CachedNetworkImage(
+                        imageUrl: house.image,
+                        fit: BoxFit.cover,
+                        height: context.screenHeight,
+                      ),
+                    ),
                   ),
                   Container(
                     color: Colors.black.withOpacity(0.35),
@@ -146,7 +153,7 @@ class _HomeData extends StatelessWidget {
                   ),
                   Positioned(
                     right: 50,
-                    top: 80,
+                    top: 140,
                     child: Text(
                       house.cost,
                       style: context.textTheme.titleLarge!.copyWith(

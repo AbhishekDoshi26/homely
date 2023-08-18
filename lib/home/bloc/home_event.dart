@@ -5,6 +5,8 @@ sealed class HomeEvent extends Equatable {
   List<Object?> get props => [];
 }
 
+class HomeGetSavedHomesEvent extends HomeEvent {}
+
 class HomeTagClickedEvent extends HomeEvent {
   final HouseTag status;
 
