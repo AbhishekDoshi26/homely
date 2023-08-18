@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:homely/constants/color_constants.dart';
 import 'package:homely/gen/assets.gen.dart';
-import 'package:homely/home/bloc/home_bloc.dart';
-import 'package:homely/home/model/home_model.dart';
+import 'package:homely/home/home.dart';
+import 'package:homely/house_detail/house_detail.dart';
 import 'package:homely/utils/utils.dart';
 
 class HomeView extends StatelessWidget {
@@ -124,13 +124,16 @@ class _HomeData extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20.0),
               child: Stack(
-                fit: StackFit.expand,
                 children: [
                   CachedNetworkImage(
                     imageUrl: house.image,
                     fit: BoxFit.cover,
+                    height: context.screenHeight,
                   ),
-                  ColoredBox(color: Colors.black.withOpacity(0.35)),
+                  Container(
+                    color: Colors.black.withOpacity(0.35),
+                    height: context.screenHeight,
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Text(
@@ -151,6 +154,60 @@ class _HomeData extends StatelessWidget {
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
+                    ),
+                  ),
+                  Positioned.fill(
+                    top: context.screenHeight / 3,
+                    left: 10,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Spacer(),
+                        InkWell(
+                          onTap: () {
+                            context.read<HomeBloc>().add(
+                                  HomeViewHomeRequestedEvent(houseModel: house),
+                                );
+                            context.push(BlocProvider.value(
+                              value: context.read<HomeBloc>(),
+                              child: const HouseDetailPage(),
+                            ));
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: ColorConstants.offWhite,
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 40.0,
+                                vertical: 10.0,
+                              ),
+                              child: Text(
+                                'View Home',
+                                style: context.textTheme.titleMedium!.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const Spacer(),
+                        Container(
+                          decoration: const BoxDecoration(
+                            color: ColorConstants.offWhite,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 40.0,
+                              vertical: 10.0,
+                            ),
+                            child: Icon(Icons.bookmark_border),
+                          ),
+                        ),
+                        const Spacer(),
+                      ],
                     ),
                   ),
                 ],
