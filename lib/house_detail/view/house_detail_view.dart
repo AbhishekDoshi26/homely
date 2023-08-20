@@ -107,14 +107,29 @@ class HouseDetailView extends StatelessWidget {
             Positioned(
               top: context.screenHeight / 2.4,
               right: 30,
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: ColorConstants.offWhite,
-                  shape: BoxShape.circle,
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.all(20.0),
-                  child: Icon(Icons.bookmark_border),
+              child: GestureDetector(
+                onTap: () {
+                  context.read<HomeBloc>().add(
+                        HomeSaveHouseEvent(
+                          houseId: selectedHouse.id,
+                          isSaved: selectedHouse.isSaved,
+                          selectedHouse: selectedHouse,
+                        ),
+                      );
+                },
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: ColorConstants.offWhite,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Icon(
+                      selectedHouse.isSaved
+                          ? Icons.bookmark
+                          : Icons.bookmark_border,
+                    ),
+                  ),
                 ),
               ),
             ),

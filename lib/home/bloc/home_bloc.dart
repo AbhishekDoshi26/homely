@@ -12,6 +12,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<HomeTagClickedEvent>(_onHomeTagClickedEvent);
     on<HomeViewHomeRequestedEvent>(_onHomeViewHomeRequestedEvent);
     on<HomeGetSavedHomesEvent>(_onHomeGetSavedHomesEvent);
+    on<HomeSaveHouseEvent>(_onHomeSaveHouseEvent);
   }
 
   final SharedPreferenceService sharedPreferenceService;
@@ -26,11 +27,36 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       updatedHouseModel = state.houseModel.map((house) {
         if (savedHomeIds.contains(house.id)) {
           return house.copyWith(isSaved: true);
+        } else {
+          return house.copyWith(isSaved: false);
         }
-        return house;
       }).toList();
+    } else {
+      updatedHouseModel =
+          updatedHouseModel.map((e) => e.copyWith(isSaved: false)).toList();
     }
     emit(state.copyWith(houseModel: updatedHouseModel));
+  }
+
+  void _onHomeSaveHouseEvent(
+    HomeSaveHouseEvent event,
+    Emitter<HomeState> emit,
+  ) {
+    if (event.isSaved) {
+      sharedPreferenceService.removeHome(houseId: event.houseId);
+    } else {
+      sharedPreferenceService.saveHome(houseId: event.houseId);
+    }
+    if (event.selectedHouse != null) {
+      emit(
+        state.copyWith(
+          selectedHouse: event.selectedHouse!.copyWith(
+            isSaved: !event.selectedHouse!.isSaved,
+          ),
+        ),
+      );
+    }
+    add(HomeGetSavedHomesEvent());
   }
 
   void _onHomeTagClickedEvent(

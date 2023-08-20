@@ -9,12 +9,21 @@ class SharedPreferenceService {
   }
 
   Future<void> saveHome({required String houseId}) async {
+    await init();
     final savedHouses = await getSavedHouses()
       ..add(houseId);
     await _sharedPreference.setStringList('savedHouses', savedHouses);
   }
 
+  Future<void> removeHome({required String houseId}) async {
+    await init();
+    final savedHouses = await getSavedHouses()
+      ..remove(houseId);
+    await _sharedPreference.setStringList('savedHouses', savedHouses);
+  }
+
   Future<List<String>> getSavedHouses() async {
+    await init();
     return _sharedPreference.getStringList('savedHouses') ?? <String>[];
   }
 }

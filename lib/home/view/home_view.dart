@@ -57,6 +57,8 @@ class _HomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final selectedTag = context.select((HomeBloc bloc) => bloc.state.tag);
+    final houseModel = context.select((HomeBloc bloc) => bloc.state.houseModel);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: Column(
@@ -83,7 +85,7 @@ class _HomeBody extends StatelessWidget {
           ),
           const SizedBox(height: 40),
           _HomeData(
-            houseModel: HouseModel.fakeHouseData
+            houseModel: houseModel
                 .where((element) => element.tag == selectedTag)
                 .toList(),
             controller: controller,
@@ -200,17 +202,27 @@ class _HomeData extends StatelessWidget {
                           ),
                         ),
                         const Spacer(),
-                        Container(
-                          decoration: const BoxDecoration(
-                            color: ColorConstants.offWhite,
-                            shape: BoxShape.circle,
-                          ),
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 40.0,
-                              vertical: 10.0,
+                        GestureDetector(
+                          onTap: () {
+                            context.read<HomeBloc>().add(HomeSaveHouseEvent(
+                                  houseId: house.id,
+                                  isSaved: house.isSaved,
+                                ));
+                          },
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              color: ColorConstants.offWhite,
+                              shape: BoxShape.circle,
                             ),
-                            child: Icon(Icons.bookmark_border),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 40.0,
+                                vertical: 10.0,
+                              ),
+                              child: Icon(house.isSaved
+                                  ? Icons.bookmark
+                                  : Icons.bookmark_border),
+                            ),
                           ),
                         ),
                         const Spacer(),

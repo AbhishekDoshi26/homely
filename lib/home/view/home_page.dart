@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
     return BlocProvider(
       create: (context) => HomeBloc(
         sharedPreferenceService: context.read<SharedPreferenceService>(),
-      ),
+      )..add(HomeGetSavedHomesEvent()),
       child: const HomeView(),
     );
   }

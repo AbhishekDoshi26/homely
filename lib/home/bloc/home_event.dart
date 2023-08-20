@@ -7,6 +7,25 @@ sealed class HomeEvent extends Equatable {
 
 class HomeGetSavedHomesEvent extends HomeEvent {}
 
+class HomeSaveHouseEvent extends HomeEvent {
+  final String houseId;
+  final bool isSaved;
+  final HouseModel? selectedHouse;
+
+  HomeSaveHouseEvent({
+    required this.houseId,
+    required this.isSaved,
+    this.selectedHouse,
+  });
+
+  @override
+  List<Object?> get props => [
+        houseId,
+        isSaved,
+        selectedHouse,
+      ];
+}
+
 class HomeTagClickedEvent extends HomeEvent {
   final HouseTag status;
 
