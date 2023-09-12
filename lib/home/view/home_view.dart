@@ -136,6 +136,7 @@ class _HomeData extends StatelessWidget {
                         imageUrl: house.image,
                         fit: BoxFit.cover,
                         height: context.screenHeight,
+                        width: context.screenWidth,
                       ),
                     ),
                   ),
@@ -204,10 +205,12 @@ class _HomeData extends StatelessWidget {
                         const Spacer(),
                         GestureDetector(
                           onTap: () {
-                            context.read<HomeBloc>().add(HomeSaveHouseEvent(
-                                  houseId: house.id,
-                                  isSaved: house.isSaved,
-                                ));
+                            context.read<HomeBloc>().add(
+                                  HomeSaveHouseEvent(
+                                    houseId: house.id,
+                                    isSaved: house.isSaved,
+                                  ),
+                                );
                           },
                           child: Container(
                             decoration: const BoxDecoration(
@@ -219,9 +222,11 @@ class _HomeData extends StatelessWidget {
                                 horizontal: 40.0,
                                 vertical: 10.0,
                               ),
-                              child: Icon(house.isSaved
-                                  ? Icons.bookmark
-                                  : Icons.bookmark_border),
+                              child: Icon(
+                                house.isSaved
+                                    ? Icons.bookmark
+                                    : Icons.bookmark_border,
+                              ),
                             ),
                           ),
                         ),

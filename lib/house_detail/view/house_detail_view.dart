@@ -19,6 +19,7 @@ class HouseDetailView extends StatelessWidget {
     return Scaffold(
       body: SizedBox(
         height: context.screenHeight,
+        width: context.screenWidth,
         child: Stack(
           children: [
             Hero(
@@ -29,6 +30,7 @@ class HouseDetailView extends StatelessWidget {
                 child: CachedNetworkImage(
                   imageUrl: selectedHouse.image,
                   height: context.screenHeight / 2,
+                  width: context.screenWidth,
                   fit: BoxFit.cover,
                 ),
               ),
