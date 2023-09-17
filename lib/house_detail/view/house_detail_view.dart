@@ -28,7 +28,7 @@ class HouseDetailView extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20.0),
                 child: CachedNetworkImage(
-                  imageUrl: selectedHouse.image,
+                  imageUrl: selectedHouse.imageUrl,
                   height: context.screenHeight / 2,
                   width: context.screenWidth,
                   fit: BoxFit.cover,

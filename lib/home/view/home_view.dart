@@ -133,7 +133,7 @@ class _HomeData extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20.0),
                       child: CachedNetworkImage(
-                        imageUrl: house.image,
+                        imageUrl: house.imageUrl,
                         fit: BoxFit.cover,
                         height: context.screenHeight,
                         width: context.screenWidth,
