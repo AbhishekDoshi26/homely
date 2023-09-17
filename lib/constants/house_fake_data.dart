@@ -1,6 +1,6 @@
 import 'package:homely/home/model/home_model.dart';
 
-class HouseFakeData {
+class FakeHouseData {
   static List<HouseModel> fakeHouseData = [
     HouseModel(
       id: "#001",
@@ -260,7 +260,8 @@ class HouseFakeData {
     HouseModel(
       id: "#022",
       title: "Ranch Oasis",
-      imageUrl: "https://digs.net/wp-content/uploads/2022/03/3S5A3496-scaled.jpg",
+      imageUrl:
+          "https://digs.net/wp-content/uploads/2022/03/3S5A3496-scaled.jpg",
       description:
           "Discover the allure of the great outdoors at the Ranch Oasis. This sprawling ranch, nestled in the serene expanse of Rural Ranchlands, offers rolling hills, spacious outdoor spaces, and a sense of tranquility that invites you to leave behind the hustle and bustle. Experience the rustic charm of a 🏡 Barn, take in the beauty of the 🏞️ Pond, and explore the scenic 🥾 Trails that wind through this breathtaking property.",
       cost: "\$1,600,000",

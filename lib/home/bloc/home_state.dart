@@ -14,7 +14,7 @@ class HomeState extends Equatable {
   static HomeState initial() {
     return HomeState(
       tag: HouseTag.popular,
-      houseModel: HouseFakeData.fakeHouseData,
+      houseModel: FakeHouseData.fakeHouseData,
     );
   }
 
