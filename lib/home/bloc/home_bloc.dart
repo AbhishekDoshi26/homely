@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:homely/constants/constants.dart';
 import 'package:homely/home/home.dart';
 import 'package:homely/services/shared_preferences_service.dart';
 
